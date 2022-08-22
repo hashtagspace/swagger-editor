@@ -70,6 +70,7 @@ const MonacoEditor = ({
           snippetsPreventQuickSuggestions: false,
         },
         renderWhitespace: true,
+        links: false,
       },
       {
         storageService: {
