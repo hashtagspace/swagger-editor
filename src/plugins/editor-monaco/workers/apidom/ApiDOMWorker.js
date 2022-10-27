@@ -2,6 +2,18 @@
 import * as vscodeLanguageServerTextDocument from 'vscode-languageserver-textdocument'; // this is true source
 import * as apidomLS from '@swagger-api/apidom-ls';
 
+const func = (value) => {
+  if (value.startsWith('https://github.com')) {
+    return value.replace('github.com', 'onprem.com');
+  }
+  return value;
+};
+
+const linksContext = {
+  maxNumberOfLinks: 100,
+  // enableTrivialLinkDiscovery: true,
+  modifierFunction: func,
+};
 export class ApiDOMWorker {
   static apiDOMContext = {
     validatorProviders: [],
@@ -11,6 +23,7 @@ export class ApiDOMWorker {
     defaultLanguageContent: {
       namespace: 'asyncapi',
     },
+    linksContext,
   };
 
   constructor(ctx, createData) {
